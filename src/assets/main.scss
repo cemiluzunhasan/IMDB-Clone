@@ -1,0 +1,15 @@
+@import './scss/variables';
+@import './scss/logos';
+@import './scss/header';
+@import './scss/carousel';
+
+body {
+  margin: 0px;
+  color: #fff !important;
+}
+h1, h2, h3, h4, h5, h6,p {
+  color: #fff !important;
+}
+.ant-layout-content {
+  background: $backgroundcolor !important;
+}

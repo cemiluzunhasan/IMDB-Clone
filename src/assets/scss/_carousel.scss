@@ -1,0 +1,20 @@
+.ant-carousel {
+  height: 600px;
+
+  .slick-slider {
+    height: 100%;
+
+    .slick-list {
+      height: 100%;
+
+      .slick-track {
+        height: 100%; 
+        position: relative;
+
+        .carousel-image {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
