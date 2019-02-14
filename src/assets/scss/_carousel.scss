@@ -13,6 +13,23 @@
 
         .carousel-image {
           width: 100%;
+          z-index: -1;
+        }
+        .carousel-caption {
+          position: absolute;
+          top: 25%;
+          left: 16%;
+
+          h1 {
+            font-size: 42px;
+          }
+          p {
+            max-width: 50%;
+          }
+          .ant-btn {
+            background: #e50914;
+            color: white;
+          }
         }
       }
     }

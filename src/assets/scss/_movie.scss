@@ -1,0 +1,31 @@
+.ant-card {
+  width: 200px !important;
+  background-color: #000 !important;
+  border: none !important;
+  display: inline-block;
+  margin: 0 20px !important;
+
+  .ant-card-cover {
+    transition: all .3s;
+  }
+
+  &:hover {
+    .ant-card-cover {
+      opacity: 0.5;
+    }
+    .ant-card-body {
+      opacity: 1;
+    }
+  }
+}
+
+.ant-card-body {
+  position: absolute;
+  bottom: 20px;
+  opacity: 0;
+  transition: all 0.3s;
+
+  .ant-card-meta-title {
+    color: #fff;
+  }
+}

@@ -2,6 +2,9 @@
 @import './scss/logos';
 @import './scss/header';
 @import './scss/carousel';
+@import './scss/buttons';
+@import './scss/globals';
+@import './scss/movie';
 
 body {
   margin: 0px;
@@ -12,4 +15,8 @@ h1, h2, h3, h4, h5, h6,p {
 }
 .ant-layout-content {
   background: $backgroundcolor !important;
+}
+
+.container {
+  padding: 50px !important;
 }
