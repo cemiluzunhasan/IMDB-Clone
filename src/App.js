@@ -3,6 +3,9 @@ import { Layout, Input, Icon, Carousel, Button } from 'antd';
 import './assets/main.scss'
 import "antd/dist/antd.css";
 import Trending from './components/Layout/Trending';
+import NowPlaying from './components/Layout/NowPlaying';
+import TopRated from './components/Layout/TopRated';
+import Upcoming from './components/Layout/Upcoming';
 
 class App extends Component {
   render() {
@@ -22,7 +25,7 @@ class App extends Component {
           <Carousel>
             <div>
               <div className="carousel-item">
-                <img src="https://i.pinimg.com/originals/26/00/d5/2600d5fda64fb9356b117219ca2bfce9.jpg" className="carousel-image" />
+                <img src="https://i.pinimg.com/originals/26/00/d5/2600d5fda64fb9356b117219ca2bfce9.jpg" className="carousel-image"/>
                 <div className="carousel-caption">
                   <h1 className="carousel-movie-header">Stranger Things</h1>
                   <h2>Drama - 8.0</h2>
@@ -39,6 +42,9 @@ class App extends Component {
             </div>
           </Carousel>
           <Trending />
+          <NowPlaying />
+          <TopRated />
+          <Upcoming />
         </Content>
         <Footer>
 
