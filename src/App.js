@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Input, Icon, Carousel, Button } from 'antd';
+import { Layout, Input, Icon } from 'antd';
 import './assets/main.scss'
 import "antd/dist/antd.css";
 import { BrowserRouter as Router, Route } from 'react-router-dom';
