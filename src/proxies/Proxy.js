@@ -7,14 +7,13 @@ export default class Proxy {
   }
 
   getParameterString(obj, prefix) {
+    console.log("Obj", obj, "Prefix", prefix);
     var str = [], p;
     for (p in obj) {
+      console.log("P is", p);
       if (obj.hasOwnProperty(p)) {
-        var k = prefix ? prefix + "[" + p + "]" : p,
-          v = obj[p];
-        str.push((v !== null && typeof v === "object") ?
-          this.getParameterString(v, k) :
-          encodeURIComponent(k) + "=" + encodeURIComponent(v));
+        var k = prefix ? prefix + "[" + p + "]" : p, v = obj[p];
+        str.push((v !== null && typeof v === "object") ? this.getParameterString(v, k) : encodeURIComponent(k) + "=" + encodeURIComponent(v));
       }
     }
     return str.join("&");

@@ -22,5 +22,15 @@ export default {
         reject();
       })
     })
+  },
+  getMovie: (payload) => {
+    return dispatch => new Promise((resolve, reject) => {
+      new MoviesProxy({ api_key: '413c8042ab31652325d5a5a50a75fd47' }).getMovie(payload).then(response => {
+        dispatch({ type: actions.GET_MOVIE, payload: response });
+        resolve();
+      }).catch(err => {
+        reject();
+      })
+    })
   }
 };

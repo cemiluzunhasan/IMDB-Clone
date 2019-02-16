@@ -53,6 +53,11 @@ export default (state = initialState, action) => {
           }
         }
       }
+    case actions.GET_MOVIE: 
+      return {
+        ...state,
+        movie: action.payload
+      }
     default:
       return state;
 
