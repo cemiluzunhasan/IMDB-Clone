@@ -58,6 +58,14 @@ export default (state = initialState, action) => {
         ...state,
         movie: action.payload
       }
+    case actions.GET_CREDITS:
+      return {
+        ...state,
+        movie: {
+          ...state.movie,
+          credits: action.payload
+        }
+      }
     default:
       return state;
 

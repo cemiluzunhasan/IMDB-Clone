@@ -32,5 +32,16 @@ export default {
         reject();
       })
     })
+  },
+
+  getCredits: (payload) => {
+    return dispatch => new Promise((resolve, reject) => {
+      new MoviesProxy({ api_key: '413c8042ab31652325d5a5a50a75fd47' }).getCredits(payload).then(response => {
+        dispatch({ type: actions.GET_CREDITS, payload: response });
+        resolve(response);
+      }).catch(err => {
+        reject(err);
+      })
+    })
   }
 };

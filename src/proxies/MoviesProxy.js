@@ -16,5 +16,9 @@ export default class MoviesProxy extends Proxy {
   getMovie(id) {
     return this.submit('get', `/movie/${id}`);
   }
+
+  getCredits(id) {
+    return this.submit('get', `/movie/${id}/credits`);
+  }
 }
 
