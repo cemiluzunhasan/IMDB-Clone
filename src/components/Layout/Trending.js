@@ -20,7 +20,6 @@ class Trending extends Component {
         loading: false
       })
     });
-
   }
 
   render() {

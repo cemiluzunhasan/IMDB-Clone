@@ -37,22 +37,46 @@ class MovieDetail extends Component {
       <div className='movie-details-container'>
         {movie && (
           <div>
-            <img
-              src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`} className='movie-backdrop' />
-            <Row>
-              <Col span={5}>
-                <img src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} className="movie-poster" />
-                <Rate disabled allowHalf allowClear defaultValue={movie.vote_average / 2}/>
+            <Row className="movie-header">
+              <Col>
+                <img src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`} className='movie-backdrop' />
               </Col>
+            </Row>
+            <Row type="flex" justify="center">
               <Col span={19}>
-                <p>Title: <span>{movie.title}</span></p>
-                <p>Genres : { movie.genres.map(item => <span>{item.name} </span>)}</p>
-                <p>Release Date : {movie.release_date}</p>
-                <p>Homepage: {<a href={movie.homepage}>{movie.homepage}</a>}</p>
-                <p>Overview: {movie.overview}</p>
-                <p>Revenue : {`$ ${movie.revenue}`}</p>
-                <p>Status : {movie.status}</p>
-                <p>Vote Average : {movie.vote_average} / 10 </p>
+                <div className="movie-card">
+                  <Row>
+                    <Col span={6}>
+                      <img src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} className="movie-poster" />
+                    </Col>
+                    <Col span={16} offset={1}>
+                      <p className="movie-title mb-10">{movie.title}</p>
+                      <div className="movie-info">
+                        <span className="movie-info-item">{movie.release_date}</span>
+                        <span className="movie-info-item">{movie.genres.map(item => <span className="movie-genre">{item.name}</span>)}</span>
+                        <span className="movie-info-item">{movie.runtime} min</span>
+                      </div>
+                      <div className="movie-rating mt-20">
+                        <Rate disabled allowHalf allowClear defaultValue={movie.vote_average / 2}/>
+                        <span className="movie-average">{movie.vote_average} / 10</span>
+                      </div>
+                    </Col>
+                  </Row>
+                  <Row className="mt-30">
+                    <Col span={12} className="pt-30">
+                      <h1>Storyline</h1>
+                      <p className="movie-overview">{movie.overview}</p>
+                    </Col>
+                    <Col span={7} offset={4} className="movie-details pt-30">
+                      <h1>Details</h1>
+                      <p>Release Date : {movie.release_date}</p>
+                      <p>Homepage: {<a href={movie.homepage}>{movie.homepage}</a>}</p>
+                      <p>Revenue : {`$ ${movie.revenue}`}</p>
+                      <p>Status : {movie.status}</p>
+                      <p>Vote Average : {movie.vote_average} / 10 </p>
+                    </Col>
+                  </Row>
+                </div>
               </Col>
             </Row>
             <Row>
