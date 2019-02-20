@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import actions from '../store/modules/movies/actions'
 import { connect } from 'react-redux'
-import { Col, Row, Rate, Card } from 'antd'
+import { Col, Row, Rate, Button } from 'antd'
+import PersonItem from '../components/UIComponents/PersonItem'
+import { MoviesProxy } from '../proxies';
+import MovieItem from '../components/UIComponents/MovieItem';
 
 class MovieDetail extends Component {
   constructor (props) {
@@ -13,64 +16,108 @@ class MovieDetail extends Component {
   }
 
   componentDidMount () {
-    this.props
-      .dispatch(actions.getMovie(this.props.match.params.id))
-      .then(movie => {
-        this.setState({
-          movie
-        }, () => {
-          this.props.dispatch(actions.getCredits(this.props.match.params.id)).then(response => {
-            let { movie } = this.state;
-            movie.credits = response;
-            this.setState({
-              movie
-            })
-          }).catch(err => console.log("Error : ", err))
+    let id = this.props.match.params.id;
+
+    this.props.dispatch(actions.getMovie(id)).then(movie => {
+      this.setState({
+        movie
+      }, () => {
+        this.props.dispatch(actions.getCredits(id)).then(response => {
+          let { movie } = this.state;
+          movie.credits = response;
+          this.setState({
+            movie
+          }, () => {
+            new MoviesProxy({ api_key: '413c8042ab31652325d5a5a50a75fd47' }).getSimilar(id).then(similars => {
+              let { movie } = this.state;
+              movie.similars = similars;
+              this.setState({
+                movie
+              })
+            });
+          })
         })
       })
+    })
   }
-
+  
   render () {
-    let { movie } = this.state;
-    
+    let { movie } = this.state
+
     return (
       <div className='movie-details-container'>
         {movie && (
           <div>
-            <Row className="movie-header">
+            <Row className='movie-header'>
               <Col>
-                <img src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`} className='movie-backdrop' />
+                <img
+                  src={`https://image.tmdb.org/t/p/original/${
+                    movie.backdrop_path
+                  }`}
+                  className='movie-backdrop'
+                />
               </Col>
             </Row>
-            <Row type="flex" justify="center">
+            <Row type='flex' justify='center'>
               <Col span={19}>
-                <div className="movie-card">
+                <div className='movie-card'>
                   <Row>
                     <Col span={6}>
-                      <img src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} className="movie-poster" />
+                      <img
+                        src={`https://image.tmdb.org/t/p/original/${
+                          movie.poster_path
+                        }`}
+                        className='movie-poster'
+                      />
                     </Col>
                     <Col span={16} offset={1}>
-                      <p className="movie-title mb-10">{movie.title}</p>
-                      <div className="movie-info">
-                        <span className="movie-info-item">{movie.release_date}</span>
-                        <span className="movie-info-item">{movie.genres.map(item => <span className="movie-genre">{item.name}</span>)}</span>
-                        <span className="movie-info-item">{movie.runtime} min</span>
+                      <p className='movie-title mb-10'>{movie.title}</p>
+                      <div className='movie-info'>
+                        <span className='movie-info-item'>
+                          {movie.release_date}
+                        </span>
+                        <span className='movie-info-item'>
+                          {movie.genres.map(item => (
+                            <span className='movie-genre'>{item.name}</span>
+                          ))}
+                        </span>
+                        <span className='movie-info-item'>
+                          {movie.runtime} min
+                        </span>
                       </div>
-                      <div className="movie-rating mt-20">
-                        <Rate disabled allowHalf allowClear defaultValue={movie.vote_average / 2}/>
-                        <span className="movie-average">{movie.vote_average} / 10</span>
+                      <div className='movie-rating mt-20'>
+                        <Rate
+                          disabled
+                          allowHalf
+                          allowClear
+                          defaultValue={movie.vote_average / 2}
+                        />
+                        <span className='movie-average'>
+                          {movie.vote_average} / 10
+                        </span>
                       </div>
+                      <a href={`https://www.imdb.com/title/${movie.imdb_id}`} target="_blank">
+                        <img src="/static/img/imdb.svg" style={{ width: '30px' }} className="mt-20" />
+                      </a>
                     </Col>
                   </Row>
-                  <Row className="mt-30">
-                    <Col span={12} className="pt-30">
+                  <Row className='mt-30'>
+                    <Col span={12} className='pt-30'>
                       <h1>Storyline</h1>
-                      <p className="movie-overview">{movie.overview}</p>
+                      <p className='movie-overview'>{movie.overview}</p>
                     </Col>
-                    <Col span={7} offset={4} className="movie-details pt-30">
+                    <Col span={7} offset={4} className='movie-details pt-30'>
                       <h1>Details</h1>
                       <p>Release Date : {movie.release_date}</p>
-                      <p>Homepage: {<a href={movie.homepage}>{movie.homepage}</a>}</p>
+                      <p>
+                        Country :{' '}
+                        {movie.production_countries.map((item, index) => (
+                          <span key={index}>{item.name}</span>
+                        ))}
+                      </p>
+                      <p>
+                        Homepage:{' '}{<a href={movie.homepage}>{movie.homepage}</a>}
+                      </p>
                       <p>Revenue : {`$ ${movie.revenue}`}</p>
                       <p>Status : {movie.status}</p>
                       <p>Vote Average : {movie.vote_average} / 10 </p>
@@ -79,17 +126,41 @@ class MovieDetail extends Component {
                 </div>
               </Col>
             </Row>
-            <Row>
-              {this.props.movie && this.props.movie.credits && this.props.movie.credits.cast.map((cast, index) => (
-                <Card 
-                className="movie-cover" 
-                key={index}  
-                cover={<img src={`https://image.tmdb.org/t/p/original/${cast.profile_path}`} 
-                alt={cast.name}/>}>
-               <Card.Meta title={cast.name} />
-             </Card>
-
-              ))}
+            <Row type='flex' justify='center' className='mt-30'>
+              <Col span={19}>
+                <Col span={12} />
+                <Col span={7} offset={4}>
+                  <div className='movie-details'>
+                    <h1>Cast</h1>
+                    {movie &&
+                      movie.credits &&
+                      movie.credits.cast.map(
+                        (cast, index) =>
+                          index < 4 && (
+                            <PersonItem
+                              name={cast.name}
+                              img={`https://image.tmdb.org/t/p/original/${cast.profile_path}`}
+                            />
+                          )
+                      )}
+                    <Button className="btn-link">See All</Button>
+                  </div>
+                </Col>
+              </Col>
+            </Row>
+            <Row type="flex" justify="center" className="mt-30">
+              <Col span={19}>
+                <h1>You may also like</h1>
+                { movie.similars && movie.similars.results.map((movie, index) => (
+                  index <= 4 && 
+                  <MovieItem
+                    key={index}
+                    title={movie.title}
+                    rating={movie.vote_average}
+                    image={movie.poster_path}
+                  />
+                ))}
+              </Col>
             </Row>
           </div>
         )}

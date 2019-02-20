@@ -20,5 +20,9 @@ export default class MoviesProxy extends Proxy {
   getCredits(id) {
     return this.submit('get', `/movie/${id}/credits`);
   }
+
+  getSimilar(id) {
+    return this.submit('get', `/movie/${id}/similar`);
+  }
 }
 

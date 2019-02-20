@@ -1,0 +1,61 @@
+/*Person item*/
+
+.person-item-container {
+  .profile-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+  }
+  .person-name {
+    font-size: 17px;
+  }
+}
+
+.movie-item {
+  width: 250px;
+  position: relative;
+  height: 370px;
+  background-color: black;
+  display: inline-flex;
+  justify-content: center;
+  align-items: flex-end;
+
+  &:hover {
+    img {
+      opacity: 0.3;
+    }
+    .movie-item-detail {
+      visibility: visible;
+    }
+  }
+  img {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    opacity: 1;
+    transition: all .3s ease-in-out;
+  }
+  &-title {
+    font-size: 17px;
+    letter-spacing: 1px;
+    font-weight: 700
+  }
+  &-average {
+    font-weight: 100;
+    font-size: 17px;
+  }
+  p {
+    position: relative;
+  }
+  &-detail {
+    position: relative;
+    bottom: 0px;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    visibility: hidden;
+  }
+}

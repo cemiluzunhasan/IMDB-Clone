@@ -13,9 +13,6 @@
 
   .movie-card {
     position: relative;
-    padding: 20px;
-    border-radius: 22px;
-    bottom: -20px;
     margin-top: 200px;
   }
 
@@ -81,6 +78,7 @@
     font-size: 16px;
     display: flex;
     align-items: center;
+
     &-star {
       margin-right: 3px !important;
       display: flex;
