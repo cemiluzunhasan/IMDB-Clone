@@ -138,8 +138,7 @@ class MovieDetail extends Component {
                         (cast, index) =>
                           index < 4 && (
                             <PersonItem
-                              name={cast.name}
-                              img={`https://image.tmdb.org/t/p/original/${cast.profile_path}`}
+                              person={cast}
                             />
                           )
                       )}
