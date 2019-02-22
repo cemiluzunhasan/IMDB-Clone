@@ -69,9 +69,11 @@
 .mb-30 {
   margin-bottom: 30px !important
 }
+
 .mb-100 {
   margin-bottom: 100px !important;
 }
+
 .ml-5 {
   margin-left: 5px !important
 }
@@ -190,4 +192,18 @@
 
 .pt-30 {
   padding-top: 30px !important
+}
+
+.bottom-bordered {
+  position: relative;
+
+  &::before {
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    background: #eb315a;
+    content: "";
+    width: 50px;
+    height: 2px;
+  }
 }

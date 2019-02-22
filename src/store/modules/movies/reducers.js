@@ -53,19 +53,7 @@ export default (state = initialState, action) => {
           }
         }
       }
-    case actions.GET_MOVIE: 
-      return {
-        ...state,
-        movie: action.payload
-      }
-    case actions.GET_CREDITS:
-      return {
-        ...state,
-        movie: {
-          ...state.movie,
-          credits: action.payload
-        }
-      }
+    
     default:
       return state;
 

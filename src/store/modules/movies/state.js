@@ -2,37 +2,62 @@ export default {
   trendingMovies: {
     results: [],
     pagination: {
-      total_pages: 0,
+      total_pages: 1,
       total_results: 0,
+      current_page: 1,
     }
   },
   nowPlaying: {
     results: [],
     pagination: {
-      total_pages: 0,
+      total_pages: 1,
       total_results: 0,
+      current_page: 1
     }
   },
   popular: {
     results: [],
     pagination: {
-      total_pages: 0,
+      total_pages: 1,
       total_results: 0,
+      current_page: 1
     }
   },
   topRated: {
     results: [],
     pagination: {
-      total_pages: 0,
+      total_pages: 1,
       total_results: 0,
+      current_page: 1
     }
   },
   upcoming: {
     results: [],
     pagination: {
-      total_pages: 0,
+      total_pages: 1,
       total_results: 0,
+      current_page: 1
     }
   },
-  movieDetail: { }
+  current: {
+    movie: { },
+    person: { 
+      tvshowCredits: {
+        results: [],
+        pagination: {
+          total_pages: 1,
+          total_results: 0,
+          current_page: 1
+        }
+      },
+      movieCredits: { 
+        results: [],
+        pagination: {
+          total_pages: 1,
+          total_results: 0,
+          current_page: 1
+        }
+      },
+    }
+  }
 };

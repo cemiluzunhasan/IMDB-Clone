@@ -10,7 +10,7 @@ class PersonItem extends Component {
     let { person } = this.props;
 
     return (
-      <Link to={`/cast/${person.id}`}>
+      <Link to={`/person/${person.id}`}>
         <div className="person-item-container pb-20">
           <img src={`https://image.tmdb.org/t/p/original/${person.profile_path}`} className="profile-img mr-20" />
           <span className="person-name">{person.name}</span>

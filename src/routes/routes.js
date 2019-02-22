@@ -1,6 +1,8 @@
 import MainPage from '../views/MainPage'
-import MovieDetail from '../views/MovieDetail';
-import CastDetail from '../views/CastDetail';
+import MovieDetail from '../views/Movie/MovieDetail';
+import PersonDetail from '../views/Person/PersonDetail';
+import TVShowCredits from '../views/Person/TVShowCredits';
+import MovieCredits from '../views/Person/MovieCredits';
 
 export default [
   {
@@ -12,7 +14,17 @@ export default [
     component: MovieDetail
   },
   {
-    path: '/cast/:id',
-    component: CastDetail
-  } 
+    path: '/person/:id',
+    component: PersonDetail,
+    routes: [
+      {
+        path: '/movies',
+        component: MovieCredits,
+      },
+      {
+        path: '/tvshows',
+        component: TVShowCredits
+      }
+    ]
+  }, 
 ];  

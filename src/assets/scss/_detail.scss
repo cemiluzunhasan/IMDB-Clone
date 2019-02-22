@@ -4,9 +4,11 @@
     opacity: 0.1;
     width: 100%;
   }
+
   .movie-header {
     position: absolute;
   }
+
   .movie-poster {
     width: 100%;
   }
@@ -20,6 +22,7 @@
     &-title {
       font-size: 38px;
     }
+
     &-genre {
       margin-right: 10px;
 
@@ -27,6 +30,7 @@
         margin: 0;
       }
     }
+
     &-info {
       display: inline-block;
       height: 30px;
@@ -44,35 +48,42 @@
         &:first-of-type {
           padding-left: 0;
         }
+
         &:last-of-type {
           border: none;
         }
       }
     }
+
     &-overview {
       font-size: 17px;
       line-height: 2;
       word-spacing: 1px;
       color: $detailcolor !important;
     }
+
     &-rating {
       display: flex;
       align-items: flex-end;
+
       .movie-average {
         margin-left: 20px;
         display: flex;
         align-items: flex-end;
       }
     }
+
     .movie-info-item {
       height: 100px;
     }
+
     &-details {
       padding: 30px;
       border-radius: 20px;
       border: 1px solid rgb(58, 58, 58);
     }
   }
+
   .ant-rate {
     color: rgb(255, 174, 0);
     font-size: 16px;
@@ -85,4 +96,50 @@
       align-items: center;
     }
   }
+}
+
+.person-detail-container {
+  display: flex;
+  justify-content: center;
+  padding: 100px 300px !important;
+
+  p {
+    color: rgb(202, 202, 202) !important;
+  }
+
+  h1 {
+    font-size: 35px;
+  }
+
+  .overview {
+    margin-top: 100px;
+
+    p {
+      line-height: 2.2 !important;
+      font-size: 15px;
+    }
+  }
+  .person-credits {
+    margin: 100px 0 50px 0;
+  }
+}
+
+.person-card {
+  max-width: 1140px;
+  padding: 35px;
+  box-shadow: 0 0 20px #000000;
+  position: relative;
+
+  .person-description {
+    span {
+      color: #eb315a;
+      width: 120px;
+      display: inline-block
+    }
+  }
+}
+
+.ant-row-flex.ant-row-flex-center.person-detail {
+  max-width: 1140px !important;
+  justify-content: center;
 }
