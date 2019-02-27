@@ -3,7 +3,7 @@ import { Layout, Input, Icon } from 'antd';
 import './assets/main.scss'
 import "antd/dist/antd.css";
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import routes from './routes/routes';
+import routes from './plugins/routes'
 
 class App extends Component {
   render() {

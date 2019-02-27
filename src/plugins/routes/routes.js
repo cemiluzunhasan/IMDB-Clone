@@ -1,38 +1,37 @@
-import MainPage from '../../views/MainPage'
-import MovieDetail from '../../views/Movie/MovieDetail';
-import PersonDetail from '../../views/Person/PersonDetail';
-import Person from '../../views/Person'
-import TVShowCredits from '../../views/Person/TVShowCredits';
-import MovieCredits from '../../views/Person/MovieCredits';
-
-export default [
-  {
+export default [{
     name: '',
     path: '/',
-    component: MainPage
+    component: require('../../components/Views/MainPage').default
+  },
+  {
+    name: 'movies',
+    path: '/movies',
+    component: require('../../components/Views/MainPage').default,
   },
   {
     name: 'movie',
     path: '/movie/:id',
-    component: MovieDetail
+    component: require('../../components/Views/Movie/MovieDetail').default,
+    routes: [
+      {
+        path: '/similar',
+        component: require('../../components/Views/Movie/SimilarMovies').default
+      }
+    ]
   },
   {
     name: 'person',
-    path: '/person',
-    component: Person,
+    path: '/person/:id',
+    component: require('../../components/Views/Person/PersonDetail').default,
     routes: [
       {
-        path: 'person/:id',
-        component: PersonDetail
-      },
-      {
         path: '/movies',
-        component: MovieCredits,
+        component: require('../../components/Views/Person/MovieCredits').default,
       },
       {
         path: '/tvshows',
-        component: TVShowCredits
+        component: require('../../components/Views/Person/TVShowCredits').default
       }
     ]
-  }, 
-];  
+  }
+];

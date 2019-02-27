@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import actions from '../../store/modules/movies/actions'
+import actions from '../../../store/modules/movies/actions'
 import { connect } from 'react-redux'
 import { Col, Row, Rate, Button } from 'antd'
-import PersonItem from '../../components/UIComponents/PersonItem'
-import { MoviesProxy } from '../../proxies';
-import MovieItem from '../../components/UIComponents/MovieItem';
+import PersonItem from '../../UIComponents/PersonItem'
+import { MoviesProxy } from '../../../proxies';
+import MovieItem from '../../UIComponents/MovieItem';
 
 class MovieDetail extends Component {
   constructor (props) {
@@ -168,5 +168,5 @@ class MovieDetail extends Component {
   }
 }
 
-const mapStateToProps = ({ movie }) => ({ movie })
-export default connect(mapStateToProps)(MovieDetail)
+const mapStateToProps = ({ movie }) => ({ ...movie })
+export default connect(mapStateToProps)(MovieDetail);

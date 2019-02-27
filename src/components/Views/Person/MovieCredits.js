@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { PersonProxy } from '../../proxies'
+import { PersonProxy } from '../../../proxies'
 
 class MovieCredits extends Component {
   constructor(props) {
@@ -16,7 +16,7 @@ class MovieCredits extends Component {
   render() {
     return (
       <div className="person-movies-container">
-        
+        MOVIE CREDITS
       </div>
     );
   };

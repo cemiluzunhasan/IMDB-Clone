@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { PersonProxy } from '../../proxies'
+import { PersonProxy } from '../../../proxies'
 import { Row, Col } from 'antd'
-import MovieItem from '../../components/UIComponents/MovieItem';
-import { Link } from 'react-router-dom'
-import routes from '../../routes/routes';
+import MovieItem from '../../UIComponents/MovieItem';
+import { Route, Link } from 'react-router-dom'
+import routes from '../../../plugins/routes'
 
 class PersonDetail extends Component {
   
@@ -46,6 +46,8 @@ class PersonDetail extends Component {
 
   render() {
     let { person, tvCredits, movieCredits } = this.state;
+    let personRoutes = routes.find(route => route.name === "person")
+    let personId = this.props.match.params.id;
 
     return (
       <div className="person-detail-container">
@@ -74,7 +76,7 @@ class PersonDetail extends Component {
               </Col>
             </Row>
             <div className="person-credits">
-              <Link to={`/person/${this.props.match.params.id}/tvshows`}>
+              <Link to={`/person/${personId}/tvshows`}>
                 <h1 className="bottom-bordered">Movies</h1>
               </Link>
               { movieCredits.cast.map((item, index) => (
@@ -88,7 +90,7 @@ class PersonDetail extends Component {
               ))}
             </div>
             <div className="person-credits">
-              <Link to={`/person/${this.props.match.params.id}/tvshows`}>
+              <Link to={`/person/${personId}/tvshows`}>
                 <h1 className="bottom-bordered">TV Shows</h1>
               </Link>
               { tvCredits.cast.map((item, index) => (
@@ -102,6 +104,11 @@ class PersonDetail extends Component {
               ))}
             </div>
           </div>
+        }
+        {
+          personRoutes.routes.map(route => (
+            <Route path={`${personRoutes.path}${route.path}`} component={route.component} />
+          ))
         }
       </div>
     );

@@ -13,7 +13,7 @@ class TVShows extends Component {
   render() {
     return (
       <div className="person-tvshows">
-        
+        TVSHOW CREDITS
       </div>
     );
   };
