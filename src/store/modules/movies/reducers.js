@@ -53,7 +53,18 @@ export default (state = initialState, action) => {
           }
         }
       }
-    
+    case actions.SEARCH_MOVIE:
+      return {
+        ...state,
+        searchResults: {
+          results: action.payload.results,
+          pagination: {
+            page: action.payload.page,
+            total_pages: action.payload.total_pages,
+            total_results: action.payload.total_results
+          }
+        }
+      }
     default:
       return state;
 

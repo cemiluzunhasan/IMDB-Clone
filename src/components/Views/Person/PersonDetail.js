@@ -76,7 +76,7 @@ class PersonDetail extends Component {
               </Col>
             </Row>
             <div className="person-credits">
-              <Link to={`/person/${personId}/tvshows`}>
+              <Link to={`/person/${personId}/movies`}>
                 <h1 className="bottom-bordered">Movies</h1>
               </Link>
               { movieCredits.cast.map((item, index) => (

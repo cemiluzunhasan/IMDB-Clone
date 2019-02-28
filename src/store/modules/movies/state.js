@@ -59,5 +59,13 @@ export default {
         }
       },
     }
+  },
+  searchResults: {
+    results: [],
+    pagination: {
+      total_pages: 1,
+      total_results: 0,
+      current_page: 1
+    }
   }
 };
