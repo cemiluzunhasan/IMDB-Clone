@@ -18,7 +18,8 @@ class MainPage extends Component {
       }
     }
   }
-  componentWillMount() {
+  
+  componentDidMount() {
     this.props.dispatch(actions.getMovies({ endpoint: 'top_rated', type: actionTypes.GET_TOPRATED })).then((response) => {
       console.log("Top Rated", response)
     });
@@ -36,6 +37,7 @@ class MainPage extends Component {
     });
   }
   render() {
+    console.log("Trendings", this.props.trendingMovies);
     return (
       <div className="mainpage-container">
         <Carousel>
