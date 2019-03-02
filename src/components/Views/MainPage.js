@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Carousel, Button, Slider } from 'antd'
+import { Carousel, Button } from 'antd'
 import ItemScroller from '../UIComponents/ItemScroller'
 
 import { connect } from 'react-redux';
@@ -25,7 +25,7 @@ class MainPage extends Component {
     });
 
     this.props.dispatch(actions.getTrending({ mediaType: 'all', timeWindow: 'week' })).then((response) => {
-      console.log("Trending", response)
+      console.log("Trending from response", response)
     });
 
     this.props.dispatch(actions.getMovies({ endpoint: 'now_playing', type: actionTypes.GET_NOWPLAYING })).then((response) => {
@@ -37,7 +37,6 @@ class MainPage extends Component {
     });
   }
   render() {
-    console.log("Trendings", this.props.trendingMovies);
     return (
       <div className="mainpage-container">
         <Carousel>

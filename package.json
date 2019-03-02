@@ -5,6 +5,7 @@
   "dependencies": {
     "antd": "^3.13.2",
     "axios": "^0.18.0",
+    "history": "^4.7.2",
     "i18n": "^0.8.3",
     "node-sass": "^4.11.0",
     "react": "^16.8.1",
