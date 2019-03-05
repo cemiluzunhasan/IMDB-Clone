@@ -1,6 +1,10 @@
 .ant-carousel {
   height: 600px;
 
+  .slick-slide {
+    position: relative;
+  }
+
   .slick-slider {
     height: 100%;
 
@@ -14,9 +18,10 @@
         .carousel-image {
           width: 100%;
           z-index: -1;
+          position: absolute;
+          opacity: 0.3;
         }
         .carousel-caption {
-          position: absolute;
           top: 25%;
           left: 16%;
 

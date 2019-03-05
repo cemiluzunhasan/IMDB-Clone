@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Layout, Select, Icon, Divider } from 'antd';
-import { BrowserRouter as Router, Route, withRouter } from 'react-router-dom';
+import { Route, withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import actions from './store/modules/movies/actions'
 import routes from './plugins/routes'
@@ -9,19 +9,18 @@ import "antd/dist/antd.css";
 import './assets/main.scss'
 
 class App extends Component {
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      loading: false,
-      displayedResults: [],
-      value: undefined
-    }
+  state = {
+    loading: false,
+    displayedResults: [],
+    value: undefined
   }
+
   handleChange = (value) => {
-    console.log("Value => ", value)
-    this.setState({ value });
     this.props.history.push(`/movie/${value}`)
+
+    //TODO: Farklı bir çözüm bul
+    window.location.reload()
   }
   handleSearch = (value) => {
     this.setState({ loading: true })
@@ -35,18 +34,20 @@ class App extends Component {
     return (
       <div className="App">
         <Header>
-          <img className="logo" src="/static/img/logo.svg" alt="filmable" />
+          <Link to="/">
+            <img className="logo" src="/static/img/logo.svg" alt="filmable" />
+          </Link> 
           <Select
             placeholder={"Search Movies"}
-            value={this.state.value}
             onSearch={this.handleSearch}
             onChange={this.handleChange}
+            onSelect={this.handleChange}
             showSearch
             showArrow={false}
             defaultActiveFirstOption={false}
             filterOption={false}
             style={{ width: '200px' }}
-            dropdownRender={menu => 
+            dropdownRender={menu =>
               <div>
                 {menu}
                 {this.props.searchResults.results.length > 0 &&
@@ -62,7 +63,7 @@ class App extends Component {
           </Select>
         </Header>
         <Content>
-            <div> 
+            <div>
             {routes.map((route, index) => (
               <Route
                 exact
@@ -74,7 +75,7 @@ class App extends Component {
             </div>
         </Content>
         <Footer>
-          
+
         </Footer>
       </div>
     );

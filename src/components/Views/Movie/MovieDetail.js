@@ -5,6 +5,7 @@ import { Col, Row, Rate, Button } from 'antd'
 import PersonItem from '../../UIComponents/PersonItem'
 import { MoviesProxy } from '../../../proxies';
 import MovieItem from '../../UIComponents/MovieItem';
+import { withRouter } from 'react-router-dom'
 
 class MovieDetail extends Component {
   constructor (props) {
@@ -15,6 +16,10 @@ class MovieDetail extends Component {
     }
   }
 
+  goCast = () => {
+    this.props.history.push(`${this.props.match.params.id}/cast`)
+  }
+  
   componentDidMount () {
     let id = this.props.match.params.id;
 
@@ -40,7 +45,7 @@ class MovieDetail extends Component {
       })
     })
   }
-  
+
   render () {
     let { movie } = this.state
 
@@ -51,10 +56,9 @@ class MovieDetail extends Component {
             <Row className='movie-header'>
               <Col>
                 <img
-                  src={`https://image.tmdb.org/t/p/original/${
-                    movie.backdrop_path
-                  }`}
+                  src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
                   className='movie-backdrop'
+                  alt="movie"
                 />
               </Col>
             </Row>
@@ -64,10 +68,9 @@ class MovieDetail extends Component {
                   <Row>
                     <Col span={6}>
                       <img
-                        src={`https://image.tmdb.org/t/p/original/${
-                          movie.poster_path
-                        }`}
+                        src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
                         className='movie-poster'
+                        alt="movie"
                       />
                     </Col>
                     <Col span={16} offset={1}>
@@ -96,8 +99,8 @@ class MovieDetail extends Component {
                           {movie.vote_average} / 10
                         </span>
                       </div>
-                      <a href={`https://www.imdb.com/title/${movie.imdb_id}`} target="_blank">
-                        <img src="/static/img/imdb.svg" style={{ width: '30px' }} className="mt-20" />
+                      <a href={`https://www.imdb.com/title/${movie.imdb_id}`} target="_blank" rel="noopener noreferrer">
+                        <img src="/static/img/imdb.svg" style={{ width: '30px' }} className="mt-20" alt="movie" />
                       </a>
                     </Col>
                   </Row>
@@ -142,7 +145,7 @@ class MovieDetail extends Component {
                             />
                           )
                       )}
-                    <Button className="btn-link">See All</Button>
+                    <Button className="btn-link" onClick={this.goCast}>See All</Button>
                   </div>
                 </Col>
               </Col>
@@ -151,7 +154,7 @@ class MovieDetail extends Component {
               <Col span={19}>
                 <h1>You may also like</h1>
                 { movie.similars && movie.similars.results.map((movie, index) => (
-                  index <= 4 && 
+                  index <= 4 &&
                   <MovieItem
                     key={index}
                     title={movie.title}
@@ -169,4 +172,4 @@ class MovieDetail extends Component {
 }
 
 const mapStateToProps = ({ movie }) => ({ ...movie })
-export default connect(mapStateToProps)(MovieDetail);
+export default withRouter(connect(mapStateToProps)(MovieDetail));

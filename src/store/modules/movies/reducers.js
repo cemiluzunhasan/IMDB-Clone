@@ -41,6 +41,18 @@ export default (state = initialState, action) => {
           }
         }
       }
+    case actions.GET_POPULAR: 
+      return {
+        ...state,
+        popular: {
+          results: action.payload.results,
+          pagination: {
+            page: action.payload.page,
+            total_pages: action.payload.total_pages,
+            total_results: action.payload.total_results
+          }
+        }
+      }
     case actions.GET_UPCOMING:
       return {
         ...state,

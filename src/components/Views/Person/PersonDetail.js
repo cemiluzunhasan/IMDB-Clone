@@ -6,17 +6,17 @@ import { Route, Link } from 'react-router-dom'
 import routes from '../../../plugins/routes'
 
 class PersonDetail extends Component {
-  
+
   constructor(props) {
     super(props);
 
     this.state = {
       person: { },
-      tvCredits: { 
+      tvCredits: {
         cast: []
       },
       movieCredits: {
-        cast: []  
+        cast: []
       },
     }
   }
@@ -52,9 +52,9 @@ class PersonDetail extends Component {
     return (
       <div className="person-detail-container">
         <div className="person-thumbnail">
-          <img src=""/>
+          <img src="" alt="movie"/>
         </div>
-        { person && 
+        { person &&
           <div className="person-detail">
             <Row className="person-card">
             <Col span={6}>
@@ -67,7 +67,7 @@ class PersonDetail extends Component {
               <p className="person-description"><span>Gender : </span>{ person.gender === 0 ? 'Female' : 'Male'  }</p>
               <p className="person-description"><span>Department : </span>{ person.known_for_department }</p>
               <p className="person-description"><span>Popularity : </span>{ person.popularity }</p>
-            </Col>    
+            </Col>
             </Row>
             <Row className="overview">
               <Col span={24}>
@@ -80,7 +80,7 @@ class PersonDetail extends Component {
                 <h1 className="bottom-bordered">Movies</h1>
               </Link>
               { movieCredits.cast.map((item, index) => (
-                index < 4 && 
+                index < 4 &&
                 <MovieItem
                   key={index}
                   title={item.title}
@@ -94,7 +94,7 @@ class PersonDetail extends Component {
                 <h1 className="bottom-bordered">TV Shows</h1>
               </Link>
               { tvCredits.cast.map((item, index) => (
-                index < 4 && 
+                index < 4 &&
                 <MovieItem
                   key={index}
                   title={item.name}

@@ -16,6 +16,10 @@ export default [{
       {
         path: '/similar',
         component: require('../../components/Views/Movie/SimilarMovies').default
+      },
+      {
+        path: '/cast',
+        component: require('../../components/Views/Movie/CastList').default
       }
     ]
   },
