@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { MoviesProxy } from '../../../proxies';
-import { Card, Row, Col } from 'antd'
+import { Card } from 'antd'
 import { Link } from 'react-router-dom'
 import { generateUserImageSource } from '../../../helpers/methods'
 
@@ -23,10 +23,9 @@ class CastList extends Component {
 
   render() {
     let { cast } = this.state;
-    
+
     return (
       <div className="list-container pl-30 pr-30">
-        {/* <Row gutter={16}> */}
         { cast.map((item, key) => (
             <Link key={key} to={`/person/${item.id}/details`}>
               <Card
@@ -41,7 +40,6 @@ class CastList extends Component {
               </Card>
             </Link>
         )) }
-        {/* </Row> */}
       </div>
     )
   }

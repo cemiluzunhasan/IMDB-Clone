@@ -16,7 +16,7 @@ class MovieDetail extends Component {
   goCast = () => {
     this.props.history.push(`${this.props.match.params.id}/cast`)
   }
-  
+
   componentDidMount () {
     let id = this.props.match.params.id;
 
@@ -112,7 +112,7 @@ class MovieDetail extends Component {
                       <p>
                         Country :{' '}
                         {movie.production_countries.map((item, index) => (
-                          <span key={index} key={index}>{item.name}</span>
+                          <span key={index}>{item.name}</span>
                         ))}
                       </p>
                       <p>

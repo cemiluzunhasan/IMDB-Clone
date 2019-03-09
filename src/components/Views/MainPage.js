@@ -10,6 +10,7 @@ import { IMAGE_ADDRESS } from '../../helpers/constants'
 
 class MainPage extends Component {
 
+
   componentDidMount() {
     this.props.dispatch(actions.getMovies({endpoint: 'top_rated', type: actionTypes.GET_TOPRATED}))
 

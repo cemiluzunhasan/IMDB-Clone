@@ -4,11 +4,7 @@ import { connect } from 'react-redux';
 
 class SearchResults extends Component {
   render() {
-    return (
-      <div>
-        <SearchScreen data={this.props.searchResults} />
-      </div>
-    );
+    return <SearchScreen data={this.props.searchResults} />
   };
 };
 
