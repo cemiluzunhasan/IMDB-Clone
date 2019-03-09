@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Layout, Select, Icon, Divider } from 'antd';
-import { Route, withRouter, Link } from 'react-router-dom';
+import { Button, Layout, Select, Icon, Divider } from 'antd';
+import { Switch, Route, withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import actions from './store/modules/movies/actions'
 import routes from './plugins/routes'
@@ -28,9 +28,14 @@ class App extends Component {
       this.setState({ loading: false })
     })
   }
-  
+
+  seeAll = () => {
+    this.props.history.push('/search')
+  }
+
   render() {
     const { Header, Content, Footer } = Layout;
+    let _this = this;
     return (
       <div className="App">
         <Header>
@@ -38,6 +43,7 @@ class App extends Component {
             <img className="logo" src="/static/img/logo.svg" alt="filmable" />
           </Link> 
           <Select
+            className="search-box"
             placeholder={"Search Movies"}
             onSearch={this.handleSearch}
             onChange={this.handleChange}
@@ -48,31 +54,31 @@ class App extends Component {
             filterOption={false}
             style={{ width: '200px' }}
             dropdownRender={menu =>
-              <div>
+              <React.Fragment>
                 {menu}
                 {this.props.searchResults.results.length > 0 &&
                   <div>
                     <Divider style={{ margin: '4px 0' }} />
-                    <div style={{ padding: '8px', cursor: 'pointer' }}>
+                    <Button style={{ padding: '8px', cursor: 'pointer', zIndex: 3, border: 'none' }} onClick={_this.seeAll}>
                       <Icon type="align-center" /> See All Results
-                    </div>
+                    </Button>
                 </div>
                 }
-              </div>}>
+              </React.Fragment>}>
               { this.props.searchResults.results.map(item => <Select.Option key={item.id}>{item.title}</Select.Option>)}
           </Select>
         </Header>
         <Content>
-            <div>
+          <Switch>
             {routes.map((route, index) => (
               <Route
-                exact
+                exact={route.exact}
                 path={route.path}
                 component={route.component}
                 key={index}
               />
             ))}
-            </div>
+          </Switch>
         </Content>
         <Footer>
 

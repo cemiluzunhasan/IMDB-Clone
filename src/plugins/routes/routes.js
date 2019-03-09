@@ -1,6 +1,8 @@
-export default [{
+export default [
+  {
     name: '',
     path: '/',
+    exact: true,
     component: require('../../components/Views/MainPage').default
   },
   {
@@ -11,31 +13,44 @@ export default [{
   {
     name: 'movie',
     path: '/movie/:id',
-    component: require('../../components/Views/Movie/MovieDetail').default,
+    component: require('../../components/Views/Movie').default,
     routes: [
       {
-        path: '/similar',
-        component: require('../../components/Views/Movie/SimilarMovies').default
+        path: '/details',
+        component: require('../../components/Views/Movie/MovieDetail').default
       },
       {
         path: '/cast',
         component: require('../../components/Views/Movie/CastList').default
+      },
+      {
+        path: '/similar',
+        component: require('../../components/Views/Movie/SimilarMovies').default
       }
     ]
   },
   {
     name: 'person',
     path: '/person/:id',
-    component: require('../../components/Views/Person/PersonDetail').default,
+    component: require('../../components/Views/Person').default,
     routes: [
       {
-        path: '/movies',
-        component: require('../../components/Views/Person/MovieCredits').default,
+        path: '/details',
+        component: require('../../components/Views/Person/PersonDetail').default
       },
       {
         path: '/tvshows',
         component: require('../../components/Views/Person/TVShowCredits').default
-      }
+      },
+      {
+        path: '/movies',
+        component: require('../../components/Views/Person/MovieCredits').default
+      },
     ]
+  },
+  { 
+    name: 'search',
+    path: '/search',
+    component: require('../../components/Views/SearchResults').default
   }
 ];

@@ -1,25 +1,20 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom'
+import { Route, Redirect, Switch } from 'react-router-dom'
 import routes from '../../plugins/routes';
 
 class Person extends Component {
   render() {
-    let personRoutes = routes.find(route => route.name === 'person')
-    console.log(this.props.match.params.id);
+    const personRoutes = routes.find(route => route.name === 'person');
     return (
       <div>
-        { personRoutes.routes.map(route => {
-            return (
-              <Route 
-                path={`${personRoutes.path}${route.path}`}
-                component={route.component}
-              />
-            )
-          }
-        )
-        }
+        <Switch>
+          { personRoutes.routes.map(x => (
+            <Route key={x.path} path={`${personRoutes.path}${x.path}`} component={x.component} />
+          ))}
+          <Redirect to={`/person/${this.props.match.params.id}/details`} />
+        </Switch>
       </div>
-      )
+    )
   };
 };
 

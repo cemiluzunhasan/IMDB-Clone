@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { PersonProxy } from '../../../proxies'
 import { Row, Col } from 'antd'
 import MovieItem from '../../UIComponents/MovieItem';
-import { Route, Link } from 'react-router-dom'
-import routes from '../../../plugins/routes'
+import { Link } from 'react-router-dom'
+import { IMAGE_ADDRESS } from '../../../helpers/constants'
 
 class PersonDetail extends Component {
 
@@ -46,19 +46,19 @@ class PersonDetail extends Component {
 
   render() {
     let { person, tvCredits, movieCredits } = this.state;
-    let personRoutes = routes.find(route => route.name === "person")
     let personId = this.props.match.params.id;
-
     return (
       <div className="person-detail-container">
         <div className="person-thumbnail">
-          <img src="" alt="movie"/>
+          {/* <img src="" alt="movie"/> */}
         </div>
         { person &&
           <div className="person-detail">
             <Row className="person-card">
             <Col span={6}>
-              <img src={`https://image.tmdb.org/t/p/original/${person.profile_path}`} alt={person.name} style={{ width: '100%' }} />
+            {person && person.profile_path && 
+              <img src={`${IMAGE_ADDRESS}/${person.profile_path}`} alt={person.name} style={{ width: '100%' }} />
+            }
             </Col>
             <Col span={10} offset={1}>
               <h1>{person.name} {person.deathday ? ' - ' + person.deathday : ''}</h1>
@@ -104,11 +104,6 @@ class PersonDetail extends Component {
               ))}
             </div>
           </div>
-        }
-        {
-          personRoutes.routes.map(route => (
-            <Route path={`${personRoutes.path}${route.path}`} component={route.component} />
-          ))
         }
       </div>
     );

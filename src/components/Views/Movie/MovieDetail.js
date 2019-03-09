@@ -5,15 +5,12 @@ import { Col, Row, Rate, Button } from 'antd'
 import PersonItem from '../../UIComponents/PersonItem'
 import { MoviesProxy } from '../../../proxies';
 import MovieItem from '../../UIComponents/MovieItem';
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
+import { IMAGE_ADDRESS } from '../../../helpers/constants'
 
 class MovieDetail extends Component {
-  constructor (props) {
-    super(props)
-
-    this.state = {
-      movie: null
-    }
+  state = {
+    movie: null
   }
 
   goCast = () => {
@@ -52,11 +49,11 @@ class MovieDetail extends Component {
     return (
       <div className='movie-details-container'>
         {movie && (
-          <div>
+          <React.Fragment>
             <Row className='movie-header'>
               <Col>
                 <img
-                  src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
+                  src={`${IMAGE_ADDRESS}/${movie.backdrop_path}`}
                   className='movie-backdrop'
                   alt="movie"
                 />
@@ -68,7 +65,7 @@ class MovieDetail extends Component {
                   <Row>
                     <Col span={6}>
                       <img
-                        src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+                        src={`${IMAGE_ADDRESS}/${movie.poster_path}`}
                         className='movie-poster'
                         alt="movie"
                       />
@@ -80,8 +77,8 @@ class MovieDetail extends Component {
                           {movie.release_date}
                         </span>
                         <span className='movie-info-item'>
-                          {movie.genres.map(item => (
-                            <span className='movie-genre'>{item.name}</span>
+                          {movie.genres.map((item, i) => (
+                            <span className='movie-genre' key={`ebeninamcigi${i}`}>{item.name}</span>
                           ))}
                         </span>
                         <span className='movie-info-item'>
@@ -115,7 +112,7 @@ class MovieDetail extends Component {
                       <p>
                         Country :{' '}
                         {movie.production_countries.map((item, index) => (
-                          <span key={index}>{item.name}</span>
+                          <span key={index} key={index}>{item.name}</span>
                         ))}
                       </p>
                       <p>
@@ -141,18 +138,23 @@ class MovieDetail extends Component {
                         (cast, index) =>
                           index < 4 && (
                             <PersonItem
+                              key={index}
                               person={cast}
                             />
                           )
                       )}
-                    <Button className="btn-link" onClick={this.goCast}>See All</Button>
+                    <Link to={`/movie/${movie.id}/cast`}>
+                      <Button className="btn-link">See All</Button>
+                    </Link>
                   </div>
                 </Col>
               </Col>
             </Row>
             <Row type="flex" justify="center" className="mt-30">
               <Col span={19}>
-                <h1>You may also like</h1>
+                <Link to={`/movie/${movie.id}/similar`}>
+                  <h1>You may also like</h1>
+                </Link>
                 { movie.similars && movie.similars.results.map((movie, index) => (
                   index <= 4 &&
                   <MovieItem
@@ -164,7 +166,7 @@ class MovieDetail extends Component {
                 ))}
               </Col>
             </Row>
-          </div>
+          </React.Fragment>
         )}
       </div>
     )

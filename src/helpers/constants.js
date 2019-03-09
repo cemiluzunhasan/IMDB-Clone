@@ -1,0 +1,1 @@
+export const IMAGE_ADDRESS = 'https://image.tmdb.org/t/p/original'

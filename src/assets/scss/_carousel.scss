@@ -1,6 +1,17 @@
 .ant-carousel {
   height: 600px;
 
+  .slick-dots {
+    bottom: 30px;
+    li {
+      margin: 0 4px;
+      button {
+        height: 10px;
+        width: 10px !important;
+        border-radius: 50%;
+      }
+    }
+  }
   .slick-slide {
     position: relative;
   }
@@ -22,9 +33,7 @@
           opacity: 0.3;
         }
         .carousel-caption {
-          top: 25%;
-          left: 16%;
-
+          margin: 100px;
           h1 {
             font-size: 42px;
           }
