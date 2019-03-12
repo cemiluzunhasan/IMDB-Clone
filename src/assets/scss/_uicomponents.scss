@@ -22,6 +22,11 @@
   justify-content: center;
   align-items: flex-end;
 
+  .movie-item-detail {
+    position: absolute;
+    color: white;
+  }
+
   &:hover {
     img {
       opacity: 0.3;
@@ -60,24 +65,28 @@
   }
 }
 
-.card-item {
-  display: inline-block;
-  border-radius: 5px;
-  border: 1px solid rgb(48, 48, 48);
-  margin-bottom: 10px;
-  width: 200px;
-
-  img {
-    height: 234px;
-  }
-  .ant-card-meta-description {
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-}
 
 .list-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
+
+  text-align: justify;
+  -ms-text-justify: distribute-all-lines;
+  text-justify: distribute-all-lines;
+
+  .card-item {
+    display: inline-block;
+    border-radius: 5px;
+    border: 1px solid rgb(48, 48, 48);
+    width: 200px;
+    display: inline-block;
+    margin: 10px;
+    height: 330px;
+    
+    img {
+      height: 234px;
+    }
+    .ant-card-meta-description {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
 }

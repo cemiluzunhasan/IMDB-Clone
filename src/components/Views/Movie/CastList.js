@@ -39,7 +39,7 @@ class CastList extends Component {
                   />
               </Card>
             </Link>
-        )) }
+        ))}
       </div>
     )
   }

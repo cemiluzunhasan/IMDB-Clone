@@ -6,6 +6,8 @@
 }
 
 .search-box {
+  color: white;
+
   .ant-select-selection {
     background: rgb(56, 56, 56) !important;
     border: none;
@@ -13,5 +15,10 @@
 }
 
 .ant-select-dropdown {
-  background: rgb(56, 56, 56) !important
+  background: rgb(56, 56, 56) !important;
+  color: white !important;
+
+  .ant-select-dropdown-menu-item {
+    color: white;
+  }
 }

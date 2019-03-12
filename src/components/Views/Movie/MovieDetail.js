@@ -12,12 +12,19 @@ class MovieDetail extends Component {
   state = {
     movie: null
   }
-
+  
   goCast = () => {
     this.props.history.push(`${this.props.match.params.id}/cast`)
   }
-
-  componentDidMount () {
+  componentDidUpdate(prevProps) {
+    if (this.props.match.params.id !== prevProps.match.params.id) {
+      this.fetchImage();
+    }
+  }
+  componentDidMount() {
+    this.fetchImage();
+  }
+  fetchImage = () => {
     let id = this.props.match.params.id;
 
     this.props.dispatch(actions.getMovie(id)).then(movie => {
@@ -41,8 +48,8 @@ class MovieDetail extends Component {
         })
       })
     })
+    window.scrollTo(0,0);
   }
-
   render () {
     let { movie } = this.state
 
@@ -157,12 +164,14 @@ class MovieDetail extends Component {
                 </Link>
                 { movie.similars && movie.similars.results.map((movie, index) => (
                   index <= 4 &&
-                  <MovieItem
-                    key={index}
-                    title={movie.title}
-                    rating={movie.vote_average}
-                    image={movie.poster_path}
-                  />
+                  <Link to={`/movie/${movie.id}/details`} onClick={this.fetchMovie}>
+                    <MovieItem
+                      key={index}
+                      title={movie.title}
+                      rating={movie.vote_average}
+                      image={movie.poster_path}
+                    />
+                  </Link>
                 ))}
               </Col>
             </Row>
