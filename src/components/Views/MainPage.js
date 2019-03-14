@@ -13,13 +13,9 @@ class MainPage extends Component {
 
   componentDidMount() {
     this.props.dispatch(actions.getMovies({endpoint: 'top_rated', type: actionTypes.GET_TOPRATED}))
-
     this.props.dispatch(actions.getTrending({mediaType: 'all', timeWindow: 'week'}))
-
     this.props.dispatch(actions.getMovies({endpoint: 'now_playing', type: actionTypes.GET_NOWPLAYING}))
-
     this.props.dispatch(actions.getMovies({endpoint: 'upcoming', type: actionTypes.GET_UPCOMING}))
-
     this.props.dispatch(actions.getMovies({endpoint: 'popular', type: actionTypes.GET_POPULAR})).then(response => console.log("Popular movies", response));
   }
   render() {
@@ -40,19 +36,27 @@ class MainPage extends Component {
         }
       </Carousel>
       <div className="container mt-30">
-        <h1>Trending Movies</h1>
+        <Link to="/movies/trending">
+          <h1>Trending</h1>
+        </Link>
         <ItemScroller data={this.props.trendingMovies && this.props.trendingMovies}/>
       </div>
       <div className="container mt-30">
-        <h1>Now Playing</h1>
+        <Link to="/movies/nowplaying">
+          <h1>Now Playing</h1>
+        </Link>
         <ItemScroller data={this.props.nowPlaying && this.props.nowPlaying} />
       </div>
       <div className="container mt-30">
-        <h1>Top Rated</h1>
+        <Link to="/movies/toprated">
+          <h1>Top Rated</h1>
+        </Link>
         <ItemScroller data={this.props.topRated && this.props.topRated}/>
       </div>
       <div className="container mt-30">
-        <h1>Trending Movies</h1>
+        <Link to="/movies/upcoming">
+          <h1>Upcoming</h1>
+        </Link>
         <ItemScroller data={this.props.upcoming && this.props.upcoming}/>
       </div>
     </div>);

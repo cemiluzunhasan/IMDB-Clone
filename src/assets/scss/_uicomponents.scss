@@ -80,11 +80,18 @@
     display: inline-block;
     margin: 10px;
     height: 330px;
-    
+    background: rgb(54, 54, 54);
+
     img {
       height: 234px;
     }
-    .ant-card-meta-description {
+
+    .ant-card-meta {
+      &-title {
+        color: #fff !important;
+      }
+    }
+    .ant-card-meta-description{
       white-space: nowrap;
       text-overflow: ellipsis;
     }

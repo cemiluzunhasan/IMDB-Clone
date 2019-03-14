@@ -3,11 +3,6 @@ export default [
     name: '',
     path: '/',
     exact: true,
-    component: require('../../components/Views/MainPage').default
-  },
-  {
-    name: 'movies',
-    path: '/movies',
     component: require('../../components/Views/MainPage').default,
   },
   {
@@ -37,10 +32,6 @@ export default [
       {
         path: '/details',
         component: require('../../components/Views/Person/PersonDetail').default
-      },
-      {
-        path: '/tvshows',
-        component: require('../../components/Views/Person/TVShowCredits').default
       },
       {
         path: '/movies',

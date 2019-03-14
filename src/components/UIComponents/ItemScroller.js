@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { Card, Icon } from 'antd'
+import { Card } from 'antd'
 import { IMAGE_ADDRESS } from '../../helpers/constants'
 
 class ItemScroller extends Component {
@@ -10,7 +10,6 @@ class ItemScroller extends Component {
 
     return (
       <div className="slider">
-        <Icon type="left-circle" theme="twoTone" />
           {data.results.length > 0 && data.results.map((item, index) => (
             <Link to={`/movie/${item.id}`} key={index}>
                 <Card

@@ -12,9 +12,6 @@ class PersonDetail extends Component {
 
     this.state = {
       person: { },
-      tvCredits: {
-        cast: []
-      },
       movieCredits: {
         cast: []
       },
@@ -35,17 +32,11 @@ class PersonDetail extends Component {
           movieCredits: response
         })
       })
-
-      proxy.getTvCredits(id).then(response => {
-        this.setState({
-          tvCredits: response
-        })
-      })
     })
   }
 
   render() {
-    let { person, tvCredits, movieCredits } = this.state;
+    let { person, movieCredits } = this.state;
     let personId = this.props.match.params.id;
     return (
       <div className="person-detail-container">
@@ -84,20 +75,6 @@ class PersonDetail extends Component {
                 <MovieItem
                   key={index}
                   title={item.title}
-                  rating={item.vote_average}
-                  image={item.poster_path}
-                />
-              ))}
-            </div>
-            <div className="person-credits">
-              <Link to={`/person/${personId}/tvshows`}>
-                <h1 className="bottom-bordered">TV Shows</h1>
-              </Link>
-              { tvCredits.cast.map((item, index) => (
-                index < 4 &&
-                <MovieItem
-                  key={index}
-                  title={item.name}
                   rating={item.vote_average}
                   image={item.poster_path}
                 />

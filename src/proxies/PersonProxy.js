@@ -9,10 +9,6 @@ export default class PersonProxy extends Proxy {
     return this.submit('get', `/person/${id}`);
   }
 
-  getTvCredits(id) {
-    return this.submit('get', `/person/${id}/tv_credits`);
-  }
-
   getMovieCredits(id) {
     return this.submit('get', `/person/${id}/movie_credits`);
   }

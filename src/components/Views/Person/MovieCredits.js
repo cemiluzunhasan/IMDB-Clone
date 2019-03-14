@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { PersonProxy } from '../../../proxies'
 import { Link } from 'react-router-dom';
-import { generateUserImageSource } from '../../../helpers/methods'
-import { Card } from 'antd'
 import MovieItem from '../../UIComponents/MovieItem';
 
 class MovieCredits extends Component {

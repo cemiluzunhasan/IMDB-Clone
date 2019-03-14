@@ -39,27 +39,6 @@ export default {
       current_page: 1
     }
   },
-  current: {
-    movie: { },
-    person: { 
-      tvshowCredits: {
-        results: [],
-        pagination: {
-          total_pages: 1,
-          total_results: 0,
-          current_page: 1
-        }
-      },
-      movieCredits: { 
-        results: [],
-        pagination: {
-          total_pages: 1,
-          total_results: 0,
-          current_page: 1
-        }
-      },
-    }
-  },
   searchResults: {
     results: [],
     pagination: {

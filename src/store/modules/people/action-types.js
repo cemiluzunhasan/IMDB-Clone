@@ -1,4 +1,0 @@
-export const GET_PEOPLE = "GET_PEOPLE";
-export const GET_TVSHOW_CREDITS = "GET_TVSHOW_CREDITS";
-export const GET_MOVIE_CREDITS = "GET_TVSHOW_CREDITS";
-
