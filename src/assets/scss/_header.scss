@@ -19,6 +19,15 @@
   color: white !important;
 
   .ant-select-dropdown-menu-item {
-    color: white;
+    color: rgb(194, 194, 194);
+
+    &:hover {
+      background-color: rgb(82, 82, 82) !important;
+      color: #fff;
+    }
+  }
+
+  .ant-divider {
+    background: #727272 !important;
   }
 }

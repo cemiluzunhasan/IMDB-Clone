@@ -86,14 +86,13 @@
       height: 234px;
     }
 
-    .ant-card-meta {
-      &-title {
-        color: #fff !important;
-      }
+    .ant-card-meta-title {
+      color: rgba(202, 202, 202, 0.85);
     }
-    .ant-card-meta-description{
+    .ant-card-meta-description {
       white-space: nowrap;
       text-overflow: ellipsis;
+      color: rgba(169, 169, 169, 0.45);
     }
   }
 }

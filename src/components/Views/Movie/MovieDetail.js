@@ -6,11 +6,12 @@ import PersonItem from '../../UIComponents/PersonItem'
 import { MoviesProxy } from '../../../proxies';
 import MovieItem from '../../UIComponents/MovieItem';
 import { withRouter, Link } from 'react-router-dom'
-import { IMAGE_ADDRESS } from '../../../helpers/constants'
+import { generateUserImageSource } from '../../../helpers/methods'
 
 class MovieDetail extends Component {
   state = {
-    movie: null
+    movie: null,
+    photos: null
   }
   
   goCast = () => {
@@ -22,9 +23,17 @@ class MovieDetail extends Component {
     }
   }
   componentDidMount() {
-    this.fetchImage();
+    this.fetchMovieDetails();
+    this.fetchImages();
   }
-  fetchImage = () => {
+  fetchImages = () => {
+    new MoviesProxy({ api_key: '413c8042ab31652325d5a5a50a75fd47' }).getPhotos(this.props.match.params.id).then(data => {
+      this.setState({
+        photos: data
+      })
+    })
+  }
+  fetchMovieDetails = () => {
     let id = this.props.match.params.id;
 
     this.props.dispatch(actions.getMovie(id)).then(movie => {
@@ -60,7 +69,7 @@ class MovieDetail extends Component {
             <Row className='movie-header'>
               <Col>
                 <img
-                  src={`${IMAGE_ADDRESS}/${movie.backdrop_path}`}
+                  src={generateUserImageSource(movie.backdrop_path)}
                   className='movie-backdrop'
                   alt="movie"
                 />
@@ -72,7 +81,7 @@ class MovieDetail extends Component {
                   <Row>
                     <Col span={6}>
                       <img
-                        src={`${IMAGE_ADDRESS}/${movie.poster_path}`}
+                        src={generateUserImageSource(movie.poster_path)}
                         className='movie-poster'
                         alt="movie"
                       />
@@ -135,8 +144,15 @@ class MovieDetail extends Component {
             </Row>
             <Row type='flex' justify='center' className='mt-30'>
               <Col span={19}>
-                <Col span={12} />
-                <Col span={7} offset={4}>
+                <Col span={14}>
+                  <h1>Photos</h1>
+                  { this.state.photos && this.state.photos.backdrops.length > 0 && this.state.photos.backdrops.map((item, key) => {
+                    return (
+                      key < 6 && <img key={key} src={generateUserImageSource(item.file_path)} className="movie-photo" alt="movie" />
+                    )
+                  })}
+                </Col>
+                <Col span={7} offset={2}>
                   <div className='movie-details'>
                     <h1>Cast</h1>
                     {movie &&

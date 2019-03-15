@@ -72,12 +72,14 @@ class PersonDetail extends Component {
               </Link>
               { movieCredits.cast.map((item, index) => (
                 index < 4 &&
-                <MovieItem
-                  key={index}
-                  title={item.title}
-                  rating={item.vote_average}
-                  image={item.poster_path}
-                />
+                <Link to={`/movie/${item.id}/details`}>
+                  <MovieItem
+                    key={index}
+                    title={item.title}
+                    rating={item.vote_average}
+                    image={item.poster_path}
+                  />
+                </Link>
               ))}
             </div>
           </div>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Layout, Select, Icon, Divider } from 'antd';
+import { Layout, Select } from 'antd';
 import { Switch, Route, withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import actions from './store/modules/movies/actions'
@@ -30,12 +30,12 @@ class App extends Component {
   }
 
   seeAll = () => {
+    console.log("See all resulttsss");
     this.props.history.push('/search')
   }
 
   render() {
     const { Header, Content, Footer } = Layout;
-    let _this = this;
     return (
       <div className="App">
         <Header>
@@ -53,18 +53,7 @@ class App extends Component {
             defaultActiveFirstOption={false}
             filterOption={false}
             style={{ width: '200px' }}
-            dropdownRender={menu =>
-              <React.Fragment>
-                {menu}
-                {this.props.searchResults.results.length > 0 &&
-                  <div>
-                    <Divider style={{ margin: '4px 0' }} />
-                    <Button style={{ padding: '8px', cursor: 'pointer', zIndex: 3, border: 'none' }} onClick={_this.seeAll}>
-                      <Icon type="align-center" /> See All Results
-                    </Button>
-                </div>
-                }
-              </React.Fragment>}>
+            >
               { this.props.searchResults.results.map(item => <Select.Option key={item.id}>{item.title}</Select.Option>)}
           </Select>
         </Header>
@@ -81,7 +70,7 @@ class App extends Component {
           </Switch>
         </Content>
         <Footer>
-
+          Created by Cemil Uzunhasan ®. All rights reserved.
         </Footer>
       </div>
     );

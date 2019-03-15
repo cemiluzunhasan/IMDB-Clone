@@ -27,5 +27,9 @@ export default class MoviesProxy extends Proxy {
   searchMovie() {
     return this.submit('get', `/search/movie`);
   }
+
+  getPhotos(id) {
+    return this.submit('get', `/movie/${id}/images`);
+  }
 }
 

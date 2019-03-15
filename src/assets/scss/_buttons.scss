@@ -15,3 +15,17 @@
     color: #40a9ff !important;
   }
 }
+
+.btn-inselect {
+  background: none;
+  padding: 8px;
+  cursor: pointer;
+  z-index: 3; 
+  border: none;
+  color: rgb(173, 173, 173);
+
+  &:hover {
+    background: none;
+    color: #e04343;
+  }
+}

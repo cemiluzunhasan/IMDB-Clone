@@ -4,7 +4,7 @@
     opacity: 0.1;
     width: 100%;
   }
-
+  
   .movie-header {
     position: absolute;
     width: 100%;
@@ -13,7 +13,10 @@
   .movie-poster {
     width: 300px;
   }
-
+  .movie-photo {
+    width: 40%;
+    margin: 10px 20px;
+  }
   .movie-card {
     position: relative;
     margin-top: 200px;
