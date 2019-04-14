@@ -1,17 +1,20 @@
 import React, { Component } from 'react'
 import actions from '../../../store/modules/movies/actions'
 import { connect } from 'react-redux'
-import { Col, Row, Rate, Button } from 'antd'
+import { Col, Row, Rate, Button, Modal } from 'antd'
 import PersonItem from '../../UIComponents/PersonItem'
 import { MoviesProxy } from '../../../proxies';
 import MovieItem from '../../UIComponents/MovieItem';
 import { withRouter, Link } from 'react-router-dom'
 import { generateUserImageSource } from '../../../helpers/methods'
 
+
+//TODO: Film image' larını basarak büyük bir modal' da görebilme
 class MovieDetail extends Component {
   state = {
     movie: null,
-    photos: null
+    photos: null,
+    imageModalVisible: false,
   }
   
   goCast = () => {
@@ -33,6 +36,17 @@ class MovieDetail extends Component {
       })
     })
   }
+  showImage = () => {
+    this.setState({
+      imageModalVisible: true
+    })
+  }
+  closeModal = () => {
+    this.setState({
+      imageModalVisible: false
+    });
+  }
+
   fetchMovieDetails = () => {
     let id = this.props.match.params.id;
 
@@ -148,7 +162,14 @@ class MovieDetail extends Component {
                   <h1>Photos</h1>
                   { this.state.photos && this.state.photos.backdrops.length > 0 && this.state.photos.backdrops.map((item, key) => {
                     return (
-                      key < 6 && <img key={key} src={generateUserImageSource(item.file_path)} className="movie-photo" alt="movie" />
+                      key < 6 && 
+                        <Modal
+                          title="Basic Modal"
+                          visible={this.state.visible}
+                          onCancel={this.handleCancel}
+                        >
+                          <img key={key} src={generateUserImageSource(item.file_path)} className="movie-photo" alt="movie" />
+                        </Modal>
                     )
                   })}
                 </Col>

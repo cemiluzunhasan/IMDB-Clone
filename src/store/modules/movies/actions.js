@@ -15,7 +15,7 @@ export default {
 
   getMovies: (payload) => {
     return dispatch => new Promise((resolve, reject) => {
-      new MoviesProxy({ api_key: '413c8042ab31652325d5a5a50a75fd47' }).getMovies(payload.endpoint).then(response => {
+      new MoviesProxy({ api_key: '413c8042ab31652325d5a5a50a75fd47', page: payload.page }).getMovies(payload.endpoint).then(response => {
         dispatch({ type: payload.type, payload: response });
         resolve(response)
       }).catch(err => {

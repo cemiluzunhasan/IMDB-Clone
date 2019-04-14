@@ -39,9 +39,20 @@ export default [
       },
     ]
   },
-  { 
-    name: 'search',
-    path: '/search',
-    component: require('../../components/Views/SearchResults').default
+  {
+    path: '/movies/trending',
+    component: require('../../components/Views/Movies/Trending').default
+  },
+  {
+    path: '/movies/nowplaying',
+    component: require('../../components/Views/Movies/NowPlaying').default
+  },
+  {
+    path: '/movies/toprated',
+    component: require('../../components/Views/Movies/TopRated').default
+  },
+  {
+    path: '/movies/upcoming',
+    component: require('../../components/Views/Movies/Upcoming').default
   }
 ];
